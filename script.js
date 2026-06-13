@@ -4,16 +4,9 @@ const tableImage = document.getElementById('tableImage');
 
 function updateImage() {
   const user = userSelect.value;
-  const isTo = modeSwitch.checked;
-
-  if (isTo) {
-    // В режиме TO всегда показываем заглушку "soon", независимо от пользователя
-    tableImage.src = `images/soon.gif`;
-    tableImage.alt = 'Soon';
-  } else {
-    tableImage.src = `images/${user}_from.png`;
-    tableImage.alt = `${user} — FROM`;
-  }
+  const mode = modeSwitch.checked ? 'to' : 'from';
+  tableImage.src = `images/${user}_${mode}.png`;
+  tableImage.alt = `${user} — ${mode === 'to' ? 'TO' : 'FROM'}`;
 }
 
 userSelect.addEventListener('change', updateImage);
